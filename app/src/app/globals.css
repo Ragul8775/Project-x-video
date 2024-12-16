@@ -1,0 +1,154 @@
+/* globals.css */
+
+/* Tailwind's base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Global Styles */
+html,
+body {
+  font-family: "Lexend", sans-serif; /* Add your preferred font */
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7; /* You can set the background color here */
+  color: #333; /* You can set a default text color here */
+}
+
+/* Apply the same gradient to the navbar globally */
+.bg-gradient-navbar {
+  background: linear-gradient(to right, #6e67f4, #4d3eb3);
+}
+
+/* Customize placeholder styles globally */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* If you want to customize the focus ring color globally */
+input:focus {
+  outline: 2px solid #6e67f4; /* Customize focus ring color */
+}
+
+:root {
+  --font-lexend: "Lexend", sans-serif;
+  --font-akshar: "Akshar", sans-serif;
+  --font-roboto: "roboto", sans-serif;
+}
+
+body {
+  font-family: var(--font-lexend);
+}
+
+.custom-wallet-button .wallet-adapter-button {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 9999px !important;
+  padding: 0rem 1.5rem !important;
+  font-family: "Goldman", sans-serif !important;
+  font-weight: 400 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  transition: background-color 0.3s ease !important;
+  font-size: 16px !important;
+}
+
+.custom-wallet-button .wallet-adapter-button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.custom-wallet-button .wallet-adapter-button-start-icon {
+  width: 1.25rem !important;
+  height: 0rem !important;
+}
+
+@media (max-width: 640px) {
+  .custom-wallet-button .wallet-adapter-button {
+    background-color: transparent !important;
+    border: none !important;
+  }
+}
+
+.agent_gradient {
+  @apply bg-gradient-to-r from-[#BE6DF0] via-[#3EBAF0] to-[#1BE5B4] bg-clip-text text-transparent;
+}
+.blue_gradient {
+  @apply bg-gradient-to-r  from-[#3EBAF0] to-[#1BE5B4] bg-clip-text text-transparent;
+}
+.gray_gradient {
+  @apply bg-gradient-to-tr from-[#ffffff]  to-[#999999] bg-clip-text text-transparent;
+}
+.leapfrog {
+  --uib-size: 30px;
+  --uib-speed: 2s;
+  --uib-color: #f0f0f0;
+  /* background-color: aqua; */
+  z-index: 100;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--uib-size);
+  height: var(--uib-size);
+}
+
+.leapfrog_dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.leapfrog_dot::before {
+  content: "";
+  display: block;
+  height: calc(var(--uib-size) * 0.22);
+  width: calc(var(--uib-size) * 0.22);
+  border-radius: 50%;
+  background-color: var(--uib-color);
+  will-change: transform;
+}
+
+.leapfrog_dot:nth-child(1) {
+  animation: leapFrog var(--uib-speed) ease infinite;
+}
+
+.leapfrog_dot:nth-child(2) {
+  transform: translateX(calc(var(--uib-size) * 0.4));
+  animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -1.5)
+    infinite;
+}
+
+.leapfrog_dot:nth-child(3) {
+  transform: translateX(calc(var(--uib-size) * 0.8)) rotate(0deg);
+  animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -3) infinite;
+}
+
+@keyframes leapFrog {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+
+  33.333% {
+    transform: translateX(0) rotate(180deg);
+  }
+
+  66.666% {
+    transform: translateX(calc(var(--uib-size) * -0.4)) rotate(180deg);
+  }
+
+  99.999% {
+    transform: translateX(calc(var(--uib-size) * -0.8)) rotate(180deg);
+  }
+
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
