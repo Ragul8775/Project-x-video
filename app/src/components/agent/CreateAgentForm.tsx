@@ -27,6 +27,14 @@ type FormData = {
   tokenImage: File | null;
 };
 
+const steps = [
+  "Building AI...",
+  "Linking Twitter...",
+  "Setting up Agent...",
+  "Analyzing Timeline...",
+  "Aggregating Tweets...",
+];
+
 export default function Deploy() {
   const router = useRouter();
   const wallet = useWallet();
@@ -129,18 +137,25 @@ export default function Deploy() {
       twitterUsername,
       twitterPassword,
     };
+
     try {
       const response = await toast.promise(createAgent(wallet, args), {
         loading: "Deploying agent...",
         success: <b>Agent deployed successfully!</b>,
-        error: (err) => <b>Failed to deploy: {err.message || err}</b>,
+        error: (err: any) => {
+          console.error("Error deploying agent:", err);
+          return (
+            <b>Failed to deploy: {err?.message || "Unknown error occurred"}</b>
+          );
+        },
       });
-
       console.log("Agent deployed successfully:", response);
-      getAllAgents();
-      reset();
 
-      router.push("/profile?tab=created");
+      setTimeout(() => {
+        getAllAgents();
+        reset();
+        router.push("/profile?tab=created");
+      }, steps.length * 2000);
     } catch (error) {
       console.log("Error deploying agent:", error);
     } finally {
@@ -532,9 +547,18 @@ export default function Deploy() {
           </p>
         </div>
       </section> */}
-      <button type="submit" className="w-full mx-auto my-4">
-        <AnimatedButton isLoading={isLoading} />
-      </button>
+      {isLoading ? (
+        <button type="submit" className="w-full mx-auto my-4">
+          <AnimatedButton isLoading={isLoading} steps={steps} />
+        </button>
+      ) : (
+        <button
+          type="submit"
+          className="w-full bg-[#192634] hover:bg-[#192634]/80 text-white h-14 text-xl rounded-[10px] font-medium transition-colors"
+        >
+          Deploy
+        </button>
+      )}
     </form>
   );
 }

@@ -15,7 +15,7 @@ const Loader = ({
 }: LoaderProps) => {
   return (
     <div
-      className={`w-full h-full relative flex items-center justify-center ${className}`}
+      className={`h-full relative flex items-center justify-center ${className} w-fit`}
     >
       <div className="leapfrog">
         <div className="leapfrog_dot"></div>
