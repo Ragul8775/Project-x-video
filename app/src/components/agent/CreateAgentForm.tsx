@@ -44,7 +44,7 @@ export default function Deploy() {
   const [connected, setConnected] = useState(false);
   const [followers, setFollowers] = useState<string[]>([]);
 
-  const dummyFollowers = ["@frankdegods", "@frankdegods", "@frankdegods"];
+  const dummyFollowers = ["@frankdegods", "@SolJakey", "@suganarium"];
 
   const handleConnectTwitter = () => {
     setLoading(true); // Start loading
